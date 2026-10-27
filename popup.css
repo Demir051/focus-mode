@@ -1,0 +1,390 @@
+:root {
+  --bg: #1c1917;
+  --panel: #292524;
+  --text: #fafaf9;
+  --muted: #a8a29e;
+  --line: #44403c;
+  --accent: #ef4444;
+}
+
+body[data-mode="break"] { --accent: #22c55e; }
+body[data-mode="idle"] { --accent: #f97316; }
+
+* { box-sizing: border-box; }
+
+body {
+  width: 300px;
+  margin: 0;
+  padding: 14px 16px 16px;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.4 system-ui, "Segoe UI", sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Sağ üstteki TR | EN seçici */
+.lang {
+  display: flex;
+  margin-left: auto;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.lang button {
+  flex: none;
+  padding: 2px 8px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.lang button:hover { color: var(--text); }
+
+.lang button.active {
+  background: var(--panel);
+  color: var(--text);
+}
+
+.timer {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 8px auto;
+}
+
+.ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring circle {
+  fill: none;
+  stroke-width: 8;
+}
+
+.track { stroke: var(--panel); }
+
+.progress {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.9s linear, stroke 0.3s;
+}
+
+.time-box {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.time {
+  font-size: 36px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -1px;
+}
+
+.label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.sub {
+  color: var(--muted);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.sub:empty { display: none; }
+
+.actions button.ghost { flex: 0 0 auto; }
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  flex: 1;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover { border-color: var(--muted); }
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+button.primary:hover { filter: brightness(1.1); }
+button.ghost { background: transparent; }
+button.small { flex: 0; padding: 6px 14px; }
+button[hidden] { display: none; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.stats div {
+  padding: 8px 4px;
+  border-radius: 8px;
+  background: var(--panel);
+  text-align: center;
+}
+
+.stats strong {
+  display: block;
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.top-site:empty { display: none; }
+
+.top-site {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+/* Bağış linki "Süre ayarları" satırının sağında durur, ekstra yer kaplamaz. */
+.foot { position: relative; }
+
+.coffee {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  display: flex;
+  padding: 4px 10px;
+  border-radius: 8px;
+  /* Logodaki yazı koyu renk; Buy Me a Coffee'nin sarısı üzerinde okunur. */
+  background: #ffdd00;
+  transition: filter 0.15s;
+}
+
+.coffee img { display: block; }
+
+.coffee:hover { filter: brightness(1.08); }
+
+details {
+  margin-top: 10px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
+summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+details[open] summary { margin-bottom: 10px; }
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+label small { color: var(--muted); opacity: 0.7; }
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+.row label { flex: 1; }
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 12px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.saved {
+  margin-left: 6px;
+  color: #22c55e;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.sites {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.count { opacity: 0.7; }
+
+.lock-note {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.site-list {
+  max-height: 124px;
+  margin: 0;
+  padding: 4px;
+  overflow-y: auto;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.site-list li {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+}
+
+.site-list li:hover { background: var(--bg); }
+
+.site {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 6px;
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.site span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.site img {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.site.off span { color: var(--muted); }
+
+/* Kaydırmalı anahtar görünümlü checkbox */
+.site input {
+  appearance: none;
+  flex: none;
+  width: 28px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--line);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.site input::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+}
+
+.site input:checked { background: var(--accent); }
+.site input:checked::after { transform: translateX(12px); }
+.site input:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.remove {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.remove:hover { color: #ef4444; }
+
+.add-form {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.add-form input {
+  flex: 1;
+  margin: 0;
+}
+
+.error {
+  min-height: 14px;
+  margin: 4px 0 0;
+  color: #f87171;
+  font-size: 11px;
+}

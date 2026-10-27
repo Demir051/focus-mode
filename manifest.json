@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Mode",
+  "version": "1.0.0",
+  "description": "Pomodoro zamanlayıcısı: odaklanırken dikkat dağıtan siteleri engeller.",
+  "permissions": ["storage", "alarms", "notifications", "declarativeNetRequest", "favicon"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Focus Mode",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["blocked.html", "blocked.js", "blocked.css", "i18n.js", "icons/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

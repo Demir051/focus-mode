@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Focus Mode</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body data-mode="idle">
+  <header>
+    <img src="icons/icon32.png" alt="" width="20" height="20">
+    <span>Focus Mode</span>
+    <div class="lang" role="group" aria-label="Dil / Language">
+      <button type="button" data-lang="tr">TR</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <div class="timer">
+    <svg viewBox="0 0 120 120" class="ring" aria-hidden="true">
+      <circle class="track" cx="60" cy="60" r="52"></circle>
+      <circle class="progress" id="progress" cx="60" cy="60" r="52"></circle>
+    </svg>
+    <div class="time-box">
+      <div id="time" class="time">25:00</div>
+      <div id="label" class="label"></div>
+      <div id="sub" class="sub"></div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button id="startFocus" class="primary" data-i18n="start"></button>
+    <button id="pause" class="primary" data-i18n="pause" hidden></button>
+    <button id="resume" class="primary" hidden></button>
+    <button id="stop" class="ghost" data-i18n="stop" hidden></button>
+  </div>
+
+  <section class="stats">
+    <div><strong id="statMin">0</strong><span data-i18n="statMin"></span></div>
+    <div><strong id="statSessions">0</strong><span data-i18n="statSessions"></span></div>
+    <div><strong id="statAttempts">0</strong><span data-i18n="statAttempts"></span></div>
+  </section>
+  <p id="topSite" class="top-site"></p>
+
+  <section class="sites">
+    <div class="section-title">
+      <span><span data-i18n="sitesTitle"></span> <span id="saved" class="saved"></span></span>
+      <span id="siteCount" class="count"></span>
+    </div>
+    <p id="lockNote" class="lock-note" data-i18n="lockNote" hidden></p>
+    <p id="reloadNote" class="error" data-i18n="reloadNote" hidden></p>
+    <ul id="siteList" class="site-list"></ul>
+
+    <form id="addForm" class="add-form">
+      <input id="newSite" type="text" data-i18n-placeholder="addPlaceholder" autocomplete="off" spellcheck="false">
+      <button type="submit" class="primary small" data-i18n="add"></button>
+    </form>
+    <p id="addError" class="error"></p>
+  </section>
+
+  <footer class="foot">
+    <details>
+      <summary data-i18n="durations"></summary>
+      <div class="row">
+        <label><span data-i18n="focusMin"></span><input type="number" id="focusMin" min="1" max="180"></label>
+        <label><span data-i18n="breakMin"></span><input type="number" id="breakMin" min="1" max="60"></label>
+      </div>
+    </details>
+    <a class="coffee" href="https://buymeacoffee.com/ademir" target="_blank" rel="noopener">
+      <img src="icons/bmc-logo.svg" alt="Buy me a coffee" height="20">
+    </a>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

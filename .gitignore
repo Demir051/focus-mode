@@ -1,0 +1,9 @@
+# Eklentinin kullanmadığı kişisel dosya
+indir.png
+
+# İşletim sistemi / editör dosyaları
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+*.zip
